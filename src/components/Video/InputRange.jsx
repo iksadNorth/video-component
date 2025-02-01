@@ -44,9 +44,9 @@ const BaseInputRange = styled.input.attrs({
 
 export const InputRange = (props) => {
     const { theme } = useContext(ThemeContext);
-    const { children, row, ...inputProps } = props;
+    const { children, row, style, className, ...inputProps } = props;
     return (
-        <Base row={row} {...inputProps}>
+        <Base row={row} className={className} style={style} >
             <span>{children}</span>
             <BaseInputRange 
                 {...inputProps}
