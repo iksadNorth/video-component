@@ -5,6 +5,7 @@ import { Container } from '../Container';
 import { Volume } from './Volume';
 import { ProgressBar } from './ProgressBar';
 import { PlayBtn } from './PlayBtn';
+import { FullBtn } from './FullBtn';
 
 
 const BaseVideo = styled.video`
@@ -79,6 +80,10 @@ export const Video = ({ srcUrl }) => {
                 case "Enter":
                     setIsPlaying((prev) => !prev);
                     break;
+                
+                case "f":
+                    video.requestFullscreen();
+                    break;
 
                 default:
                     return;
@@ -105,6 +110,7 @@ export const Video = ({ srcUrl }) => {
             <Container className='y-fit clickable' row="true">
                 <PlayBtn videoRef={videoRef} value={isPlaying}/>
                 <ProgressBar videoRef={videoRef} value={currentTime}/>
+                <FullBtn videoRef={videoRef}/>
             </Container>
         </Cover>
     </Frame>);
