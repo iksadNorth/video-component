@@ -8,7 +8,6 @@ const Base = styled.div`
 
     display: flex;
     flex-direction: ${({row}) => row ? 'row' : 'column'};
-    justify-content: center;
     align-items: center;
 
     height: 100%;

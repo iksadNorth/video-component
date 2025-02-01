@@ -86,7 +86,7 @@ export const ProgressBar = ({ value, videoRef, ...props }) => {
         <InputRange
             value={progress} onChange={(event) => setProgress(event.target.value)} 
             onMouseUp={mouseUp} onMouseDown={mouseDown}
-            row={true} {...props}
+            row="true" {...props}
             >
             {getTimeFormatted(getTimeFromBar(progress))}
         </InputRange>
