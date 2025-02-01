@@ -9,7 +9,7 @@ const Button = styled.button`
   top: 3px;
   padding: 5px;
 
-  color: ${({theme}) => theme.color};
+  color: white;
   background-color: unset;
   border: none;
 

@@ -4,7 +4,6 @@ import { ThemeContext } from './Theme';
 
 
 const Base = styled.div`
-    background-color: ${({theme}) => theme.background};
     color: ${({theme}) => theme.color};
 
     display: flex;

@@ -12,6 +12,31 @@ const BaseVideo = styled.video`
     border-radius: 20px;
 `;
 
+const Frame = styled.div`
+    width: 100%;
+    position: relative;
+`;
+
+const Cover = styled(Container)`
+    position: absolute;
+    top: 50%; left: 50%;
+    height: 90%; width: 95%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+
+    & .clickable {
+        pointer-events: auto;
+    }
+
+    & .x-fit {
+        width: fit-content;
+    }
+
+    & .y-fit {
+        height: fit-content;
+    }
+`;
+
 export const Video = ({ srcUrl }) => {
     const videoRef = useRef(null);
     const [isPlaying, setIsPlaying] = useState(false);
@@ -61,17 +86,20 @@ export const Video = ({ srcUrl }) => {
         return () => window.removeEventListener("keydown", handleKeyDown);
     }, []);
     
-    return (<>
-        <Container row="true" style={{'aspectRatio': 5/3}}>
-            <BaseVideo 
-                ref={videoRef} src={srcUrl}
-                onClick={() => setIsPlaying((prev) => !prev)}
-            />
-            <Volume videoRef={videoRef} value={volume} />
-        </Container>
-        <Container row="true">
-            <PlayBtn videoRef={videoRef} value={isPlaying}/>
-            <ProgressBar videoRef={videoRef} value={currentTime} style={{'justifyContent': 'unset'}}/>
-        </Container>
-    </>);
+    return (<Frame>
+        <BaseVideo 
+            ref={videoRef} src={srcUrl}
+            onClick={() => setIsPlaying((prev) => !prev)}
+        />
+        <Cover>
+            <Container row="true">
+                <Container>&nbsp;</Container>
+                <Volume className='x-fit clickable' videoRef={videoRef} value={volume} />
+            </Container>
+            <Container className='y-fit clickable' row="true">
+                <PlayBtn videoRef={videoRef} value={isPlaying}/>
+                <ProgressBar videoRef={videoRef} value={currentTime}/>
+            </Container>
+        </Cover>
+    </Frame>);
 };

@@ -9,6 +9,8 @@ const Base = styled(Container)`
         font-size: 0.75rem;
         font-weight: 700;
         text-align: center;
+
+        color: white;
     }
 `;
 
@@ -26,7 +28,7 @@ const BaseInputRange = styled.input.attrs({
     -webkit-appearance: none;
     outline: none;
     border-radius: 2px;
-    background: linear-gradient(${rowThen('-90deg', '180deg')}, ${({theme}) => theme.range_track_max_color} 0%, ${({theme}) => theme.range_track_min_color} 100%);
+    background: linear-gradient(${rowThen('-90deg', '180deg')}, white 0%, white 100%);
 
     /* range thumb 스타일 */
     &::-webkit-slider-thumb {
@@ -35,16 +37,16 @@ const BaseInputRange = styled.input.attrs({
         ${rowThen('height', 'width')}: calc(${unit} / 2.00);
         ${rowThen('width', 'height')}: calc(${unit});
         
-        background:${({theme}) => theme.range_btn_color};
+        background: black;
         border-radius: 2px;
     }
 `;
 
 export const InputRange = (props) => {
     const { theme } = useContext(ThemeContext);
-    const { children, row, style, ...inputProps } = props;
+    const { children, row, ...inputProps } = props;
     return (
-        <Base row={row} style={style}>
+        <Base row={row} {...inputProps}>
             <span>{children}</span>
             <BaseInputRange 
                 {...inputProps}
