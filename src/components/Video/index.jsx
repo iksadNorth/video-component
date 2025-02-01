@@ -23,9 +23,15 @@ const Cover = styled(Container)`
     height: 90%; width: 95%;
     transform: translate(-50%, -50%);
     pointer-events: none;
+    opacity: 0.0;
 
     & .clickable {
         pointer-events: auto;
+    }
+
+    &:hover {
+        opacity: 0.5;
+        transition: all 0.5s;
     }
 
     & .x-fit {

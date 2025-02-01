@@ -11,9 +11,9 @@ const About = () => {
     return (
         <Container style={{ 'minHeight': '100vh' }}>
             <h2>About Page</h2>
-            <Container style={{ 'width': '600px' }}>
+            <Container style={{ 'width': '700px' }}>
                 <Video srcUrl={'http://localhost:8000/api/v1/video/0001'}></Video>
-            </Container>    
+            </Container>
             <Container row="true">
                 <Button onClick={() => setTheme(lightTheme)}>Light</Button>
                 <Button onClick={() => setTheme(darkTheme)}>Dark</Button>
