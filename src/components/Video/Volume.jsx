@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { InputRange } from './InputRange';
 
 
-export const Volume = ({ value, videoRef, row }) => {  
+export const Volume = ({ value, videoRef, row, ...props }) => {  
     // getter, setter 정의
     const setVideoVolume = (videoRef, volumeVal) => {
         // 유효성 검사
@@ -44,6 +44,7 @@ export const Volume = ({ value, videoRef, row }) => {
         <InputRange 
             ref={volumeRef} row={row}
             value={volume} onChange={handleVolumeChange}
-        ><span>{Math.round(volume * 100)}</span></InputRange>
+            {...props}
+        >{Math.round(volume * 100)}</InputRange>
     );
 };

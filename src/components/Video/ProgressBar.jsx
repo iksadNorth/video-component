@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { Container } from '../Container';
+import { InputRange } from './InputRange';
 
 
-export const ProgressBar = ({ value, videoRef }) => {
+export const ProgressBar = ({ value, videoRef, ...props }) => {
     // getter, setter 정의
     const getTimeFromBar = (scale) => {
         const videoEl = videoRef.current;
         if(!videoEl) return 0;
-        return (scale / 100) * (videoEl.duration);
+        return scale * (videoEl.duration);
     };
     const getScaleFromBar = (seconds) => {
         const videoEl = videoRef.current;
         if(!videoEl) return 0;
-        return (seconds / videoEl.duration) * 100;
+        return (seconds / videoEl.duration);
     };
     const getTimeFormatted = (seconds) => {
         if(!seconds) return '00:00:00';
@@ -82,14 +82,13 @@ export const ProgressBar = ({ value, videoRef }) => {
         setProgress(getScaleFromBar(value));
     }, [value]);
   
-    return (
-        <Container row="true">
-            <span>{getTimeFormatted(getTimeFromBar(progress))}</span>
-            <input
-                value={progress} onChange={(event) => setProgress(event.target.value)} 
-                onMouseUp={mouseUp} onMouseDown={mouseDown}
-                type="range" max="100" step="0.01"
-            />
-        </Container>
-    );
+    return (<>
+        <InputRange
+            value={progress} onChange={(event) => setProgress(event.target.value)} 
+            onMouseUp={mouseUp} onMouseDown={mouseDown}
+            row={true} {...props}
+            >
+            {getTimeFormatted(getTimeFromBar(progress))}
+        </InputRange>
+    </>);
 };

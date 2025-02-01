@@ -15,7 +15,7 @@ const BaseVideo = styled.video`
 export const Video = ({ srcUrl }) => {
     const videoRef = useRef(null);
     const [isPlaying, setIsPlaying] = useState(false);
-    const [volume, setVolume] = useState(1);
+    const [volume, setVolume] = useState(0.5);
     const [currentTime, setCurrentTime] = useState(0);
 
     useEffect(() => {
@@ -62,17 +62,16 @@ export const Video = ({ srcUrl }) => {
     }, []);
     
     return (<>
-        <Container row="true">
+        <Container row="true" style={{'aspectRatio': 5/3}}>
             <BaseVideo 
                 ref={videoRef} src={srcUrl}
                 onClick={() => setIsPlaying((prev) => !prev)}
             />
             <Volume videoRef={videoRef} value={volume} />
-            <Volume videoRef={videoRef} value={volume} row/>
         </Container>
         <Container row="true">
             <PlayBtn videoRef={videoRef} value={isPlaying}/>
-            <ProgressBar videoRef={videoRef} value={currentTime} />
+            <ProgressBar videoRef={videoRef} value={currentTime} style={{'justifyContent': 'unset'}}/>
         </Container>
     </>);
 };

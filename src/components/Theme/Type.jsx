@@ -4,9 +4,9 @@ const lightTheme = {
     color: 'black',
     btn_color: 'gray',
 
-    range_btn_color: 'gray',
+    range_btn_color: 'white',
     range_track_max_color: 'black',
-    range_track_min_color: 'white',
+    range_track_min_color: 'black',
 };
 
 const darkTheme = {
@@ -14,9 +14,9 @@ const darkTheme = {
     color: 'white',
     btn_color: 'gray',
 
-    range_btn_color: 'gray',
+    range_btn_color: 'black',
     range_track_max_color: 'white',
-    range_track_min_color: 'black',
+    range_track_min_color: 'white',
 };
 
 export { lightTheme, darkTheme };
