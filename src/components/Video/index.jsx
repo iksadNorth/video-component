@@ -1,42 +1,22 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
-import { FaPlay, FaPause } from "react-icons/fa";
 
-import { Button } from '../Button';
 import { Container } from '../Container';
 import { Volume } from './Volume';
 import { ProgressBar } from './ProgressBar';
+import { PlayBtn } from './PlayBtn';
 
 
 const BaseVideo = styled.video`
-  width: 100%;
+    width: 100%;
+    border-radius: 20px;
 `;
 
 export const Video = ({ srcUrl }) => {
     const videoRef = useRef(null);
-    const [time, setTime] = useState(0);
-
-    const togglePlayPause = () => {
-        const video = videoRef.current;
-        if(!video) return;
-
-        if (video && video.paused) {
-            video.play();
-        } else {
-            video.pause();
-        }
-    };
-    
-    const handlePlayPause = () => {
-        togglePlayPause();
-    };
-
-    const handleProgress = () => {
-        const video = videoRef.current;
-        if(!video) return;
-
-        setTime(video.currentTime);
-    };
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [volume, setVolume] = useState(1);
+    const [currentTime, setCurrentTime] = useState(0);
 
     useEffect(() => {
         const handleKeyDown = (event) => {
@@ -49,24 +29,24 @@ export const Video = ({ srcUrl }) => {
             
             switch (event.key) {
                 case "ArrowRight":
-                    video.currentTime += 5;
+                    setCurrentTime((prev) => (prev + 5));
                     break;
 
                 case "ArrowLeft":
-                    video.currentTime += -5;
+                    setCurrentTime((prev) => (prev - 5));
                     break;
                 
                 case "ArrowUp":
-                    video.volume += 0.05;
+                    setVolume((prev) => (prev + 0.05));
                     break;
 
                 case "ArrowDown":
-                    video.volume += -0.05;
+                    setVolume((prev) => (prev - 0.05));
                     break;
                     
                 case " ":
                 case "Enter":
-                    togglePlayPause();
+                    setIsPlaying((prev) => !prev);
                     break;
 
                 default:
@@ -83,18 +63,16 @@ export const Video = ({ srcUrl }) => {
     
     return (<>
         <Container row="true">
-            <BaseVideo ref={videoRef} 
-                onTimeUpdate={handleProgress}
-                onClick={handlePlayPause}
-                src={srcUrl}
+            <BaseVideo 
+                ref={videoRef} src={srcUrl}
+                onClick={() => setIsPlaying((prev) => !prev)}
             />
-            <Volume videoRef={videoRef} />
+            <Volume videoRef={videoRef} value={volume} />
+            <Volume videoRef={videoRef} value={volume} row/>
         </Container>
         <Container row="true">
-            <Button onClick={handlePlayPause}>
-                {(!videoRef.current || videoRef.current.paused) ? <FaPause /> : <FaPlay />}
-            </Button>
-            <ProgressBar videoRef={videoRef} value={time} />
+            <PlayBtn videoRef={videoRef} value={isPlaying}/>
+            <ProgressBar videoRef={videoRef} value={currentTime} />
         </Container>
     </>);
 };
