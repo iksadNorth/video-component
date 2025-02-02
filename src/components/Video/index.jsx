@@ -7,6 +7,8 @@ import { ProgressBar } from './ProgressBar';
 import { PlayBtn } from './PlayBtn';
 import { FullBtn } from './FullBtn';
 
+import { resizeObserverInReact } from '../../utils';
+
 
 const BaseVideo = styled.video`
     width: 100%;
@@ -15,6 +17,7 @@ const BaseVideo = styled.video`
 
 const Frame = styled.div`
     width: 100%;
+    display: flex;
     position: relative;
 `;
 
@@ -49,6 +52,7 @@ export const Video = ({ srcUrl }) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [volume, setVolume] = useState(0.5);
     const [currentTime, setCurrentTime] = useState(0);
+    const [hidden, setHidden] = useState(false);
 
     useEffect(() => {
         const handleKeyDown = (event) => {
@@ -97,6 +101,13 @@ export const Video = ({ srcUrl }) => {
         return () => window.removeEventListener("keydown", handleKeyDown);
     }, []);
     
+    // 일정 크기 이하면 특정 요소 숨김.
+    const handleResizeEvent = ({width}) => {
+        setHidden(width < 300);
+        console.log(width);
+    };
+    useEffect(resizeObserverInReact(videoRef, handleResizeEvent), [videoRef]);
+    
     return (<Frame>
         <BaseVideo 
             ref={videoRef} src={srcUrl}
@@ -105,7 +116,7 @@ export const Video = ({ srcUrl }) => {
         <Cover>
             <Container row="true">
                 <Container>&nbsp;</Container>
-                <Volume className='x-fit clickable' videoRef={videoRef} value={volume} />
+                <Volume className='x-fit clickable' videoRef={videoRef} value={volume} disabled={hidden} />
             </Container>
             <Container className='y-fit clickable' row="true">
                 <PlayBtn videoRef={videoRef} value={isPlaying}/>

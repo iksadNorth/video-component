@@ -5,6 +5,8 @@ import { ThemeContext } from '../Theme';
 
 const unit = '1.00rem';
 const Base = styled(Container)`
+    ${({disabled}) => (disabled ?? false) ? 'display: none;' : ''}
+
     & > span {
         font-size: 0.75rem;
         font-weight: 700;
@@ -44,9 +46,9 @@ const BaseInputRange = styled.input.attrs({
 
 export const InputRange = (props) => {
     const { theme } = useContext(ThemeContext);
-    const { children, row, style, className, ...inputProps } = props;
+    const { children, row, style, className, disabled, ...inputProps } = props;
     return (
-        <Base row={row} className={className} style={style} >
+        <Base row={row} className={className} style={style} disabled={disabled}>
             <span>{children}</span>
             <BaseInputRange 
                 {...inputProps}
