@@ -66,11 +66,11 @@ export const Video = ({ srcUrl }) => {
             
             switch (event.key) {
                 case "ArrowRight":
-                    setCurrentTime((prev) => (prev + 5));
+                    video.currentTime += 5;
                     break;
 
                 case "ArrowLeft":
-                    setCurrentTime((prev) => (prev - 5));
+                    video.currentTime -= 5;
                     break;
                 
                 case "ArrowUp":
