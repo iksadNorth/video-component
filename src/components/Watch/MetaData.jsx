@@ -19,7 +19,7 @@ export const MetaData = ({title, publisher, numDescripter, ...props}) => {
         return () => {
             document.title = oldTitle;
         };
-    }, []);
+    }, [title]);
     
     return (<ContainerStyled>
         <h2>{ title ?? document.title }</h2>
