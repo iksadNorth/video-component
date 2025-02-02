@@ -12,9 +12,11 @@ import { VideoProvider } from "../Video/VideoContext ";
 import { backURL } from "../../utils";
 import api from "../../axio";
 import { useProxy } from "../AxioProxy";
+import { useParams } from "react-router-dom";
 
 
 const Watch = () => {
+    const { videoId } = useParams();
     const { setTheme } = useTheme();
     const [data, setData] = useState([]);
     const proxy = useProxy();
@@ -34,7 +36,7 @@ const Watch = () => {
     };
 
     useEffect(() => {
-        proxy(fetchData("0001")).then(setData);
+        proxy(fetchData(videoId)).then(setData);
     }, []);
 
     return (<>
