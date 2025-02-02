@@ -1,6 +1,6 @@
 import { createContext, useState, useContext } from "react";
-import { Modal } from "./Modal";
-import { Spinner } from "./Spinner";
+import { Modal } from "../Modal";
+import { Spinner } from "../Spinner";
 
 
 const LoadingContext = createContext();
