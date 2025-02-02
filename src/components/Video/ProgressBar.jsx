@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { InputRange } from './InputRange';
+import { useVideo } from "../Video/VideoContext ";
 
 
-export const ProgressBar = ({ value, videoRef, ...props }) => {
+export const ProgressBar = ({ value, ...props }) => {
+    const videoRef = useVideo();
+
     // getter, setter 정의
     const getTimeFromBar = (scale) => {
         const videoEl = videoRef.current;

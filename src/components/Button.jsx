@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { ThemeContext } from './Theme';
+import { useTheme } from './Theme';
 
 
 const Base = styled.button`
@@ -13,7 +13,7 @@ const Base = styled.button`
 `;
 
 export const Button = (props) => {
-    const { theme } = useContext(ThemeContext);
+    const { theme } = useTheme();
     return (
         <Base theme={theme} {...props}>
           {props.children}

@@ -1,23 +1,23 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { FaPlay, FaPause } from "react-icons/fa";
-import { ThemeContext } from '../Theme';
+import { useTheme } from '../Theme';
 
 
 const Button = styled.button`
-  position: relative;
-  top: 3px;
-  padding: 5px;
+    position: relative;
+    top: 3px;
+    padding: 5px;
 
-  color: white;
-  background-color: unset;
-  border: none;
+    color: white;
+    background-color: unset;
+    border: none;
 
-  cursor: pointer;
+    cursor: pointer;
 `;
 
 export const PlayBtn = ({ value, videoRef }) => {
-    const { theme } = useContext(ThemeContext);
+    const { theme } = useTheme();
     const [isPlaying, setIsPlaying] = useState(false);
 
     // 이벤트 정의

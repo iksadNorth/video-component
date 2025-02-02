@@ -6,6 +6,7 @@ import { Volume } from './Volume';
 import { ProgressBar } from './ProgressBar';
 import { PlayBtn } from './PlayBtn';
 import { FullBtn } from './FullBtn';
+import { useVideo }from './VideoContext ';
 
 import { resizeObserverInReact } from '../../utils';
 
@@ -48,7 +49,7 @@ const Cover = styled(Container)`
 `;
 
 export const Video = ({ srcUrl }) => {
-    const videoRef = useRef(null);
+    const videoRef = useVideo();
     const [isPlaying, setIsPlaying] = useState(false);
     const [volume, setVolume] = useState(0.5);
     const [currentTime, setCurrentTime] = useState(0);
@@ -104,7 +105,6 @@ export const Video = ({ srcUrl }) => {
     // 일정 크기 이하면 특정 요소 숨김.
     const handleResizeEvent = ({width}) => {
         setHidden(width < 300);
-        console.log(width);
     };
     useEffect(resizeObserverInReact(videoRef, handleResizeEvent), [videoRef]);
     

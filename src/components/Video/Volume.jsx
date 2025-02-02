@@ -1,8 +1,11 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { InputRange } from './InputRange';
+import { useVideo } from "../Video/VideoContext ";
 
 
-export const Volume = ({ value, videoRef, row, ...props }) => {  
+export const Volume = ({ value, row, ...props }) => {  
+    const videoRef = useVideo();
+
     // getter, setter 정의
     const setVideoVolume = (videoRef, volumeVal) => {
         // 유효성 검사

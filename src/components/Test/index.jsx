@@ -3,6 +3,7 @@ import { Container } from "../Container";
 import { SizeTest, SizeTestPair } from './SizeTest';
 import { Bedge } from '../Bedge';
 import { Video } from '../Video';
+import { backURL } from "../../utils";
 
 const Test = () => (
     <Container>
@@ -14,7 +15,7 @@ const Test = () => (
             </Bedge>
         </SizeTestPair>
         <SizeTestPair max={'300px'}>
-            <Video srcUrl={'http://localhost:8000/api/v1/video/0001'}></Video>
+            <Video srcUrl={backURL('/api/v1/video/0001')}></Video>
         </SizeTestPair>
     </Container>
 );

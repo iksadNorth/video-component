@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useContext } from 'react';
 import { lightTheme, darkTheme } from './Type';
 
 // ThemeContext 생성
@@ -15,6 +15,12 @@ const ThemeProviderContext = ({ children }) => {
   );
 };
 
+// Context 가져오는 훅
+const useTheme = () => {
+    return useContext(ThemeContext);
+};
+
+
 // export문
 export default ThemeProviderContext;
-export { ThemeContext, lightTheme, darkTheme };
+export { useTheme, lightTheme, darkTheme };

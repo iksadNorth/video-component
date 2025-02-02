@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { FaExpand } from "react-icons/fa";
-import { ThemeContext } from '../Theme';
+import { useTheme } from '../Theme';
 
 
 const Button = styled.button`
@@ -17,7 +17,7 @@ const Button = styled.button`
 `;
 
 export const FullBtn = ({ videoRef }) => {
-    const { theme } = useContext(ThemeContext);
+    const { theme } = useTheme();
 
     // 이벤트 정의
     const getFullScreen = () => {

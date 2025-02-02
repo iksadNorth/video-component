@@ -3,10 +3,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Container } from './Container';
 
 
+const Spacer = styled.span`
+    margin-left: 0.25rem;
+`;
 const ButtonStyled = styled.button`
     border: none;
     border-radius: 10px;
-    background-color: gray;
+    background-color: ${({bgcolor}) => bgcolor ?? 'gray'};
 
     &:hover {
         background-color: lightgray;
@@ -22,11 +25,12 @@ export const IconContainer = styled(Container)`
     }
 `;
 
-export const IconBtn = ({children, icon, ...props}) => {
+export const IconBtn = ({children, icon, bgcolor, ...props}) => {
     return (<>
-        <ButtonStyled {...props}>
+        <ButtonStyled bgcolor={bgcolor} {...props}>
             <div>
                 {icon ? <FontAwesomeIcon icon={icon} /> : ''}
+                {(icon && children) ? <Spacer /> : ''}
                 {children}
             </div>
         </ButtonStyled>

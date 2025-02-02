@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Container } from '../Container';
-import { ThemeContext } from '../Theme';
+import { useTheme } from '../Theme';
 
 const unit = '1.00rem';
 const Base = styled(Container)`
@@ -45,7 +45,7 @@ const BaseInputRange = styled.input.attrs({
 `;
 
 export const InputRange = (props) => {
-    const { theme } = useContext(ThemeContext);
+    const { theme } = useTheme();
     const { children, row, style, className, disabled, ...inputProps } = props;
     return (
         <Base row={row} className={className} style={style} disabled={disabled}>

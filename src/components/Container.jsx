@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { ThemeContext } from './Theme';
+import { useTheme } from './Theme';
 
 
 const Base = styled.div`
@@ -17,7 +17,7 @@ const Base = styled.div`
 `;
 
 export const Container = (props) => {
-    const { theme } = useContext(ThemeContext);
+    const { theme } = useTheme();
     return (
         <Base theme={theme} {...props}>
             { props.children }

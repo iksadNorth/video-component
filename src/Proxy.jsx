@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styled from 'styled-components';
-import { ThemeContext } from './components/Theme';
+import { useTheme } from './components/Theme';
 
 
 const ThemeProxy = styled.div`
@@ -8,7 +8,7 @@ const ThemeProxy = styled.div`
 `;
 
 const Proxy = (props) => {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useTheme();
   return (
     <ThemeProxy theme={theme}>
       {props.children}
