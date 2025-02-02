@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { FaPlay, FaPause } from "react-icons/fa";
 import { useTheme } from '../Theme';
+import { useVideo } from './VideoContext ';
 
 
 const Button = styled.button`
@@ -16,7 +17,8 @@ const Button = styled.button`
     cursor: pointer;
 `;
 
-export const PlayBtn = ({ value, videoRef }) => {
+export const PlayBtn = ({ value }) => {
+    const videoRef = useVideo();
     const { theme } = useTheme();
     const [isPlaying, setIsPlaying] = useState(false);
 

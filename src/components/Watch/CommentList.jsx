@@ -21,7 +21,7 @@ export const CommentList = ({totalCount, commentArr, ...props}) => {
             <Container>
                 { 
                     commentArr?.map(
-                        (props) => <Comment {...props}/>
+                        (props, key) => <Comment key={key} {...props}/>
                     ) 
                 }
             </Container>

@@ -33,8 +33,9 @@ export const timeToSeconds = (timeStr) => {
     return hours * 3600 + minutes * 60 + seconds;
 };
 
+export const BACK_URL = 'http://localhost:8000';
 export const backURL = (url) => {
-    return `http://localhost:8000${url}`;
+    return `${BACK_URL}${url}`;
 };
 
 export const convertToKoreanUnit = (num) => {

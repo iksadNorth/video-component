@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import { Container } from '../Container';
@@ -116,12 +116,12 @@ export const Video = ({ srcUrl }) => {
         <Cover>
             <Container row="true">
                 <Container>&nbsp;</Container>
-                <Volume className='x-fit clickable' videoRef={videoRef} value={volume} disabled={hidden} />
+                <Volume className='x-fit clickable' value={volume} disabled={hidden} />
             </Container>
             <Container className='y-fit clickable' row="true">
-                <PlayBtn videoRef={videoRef} value={isPlaying}/>
-                <ProgressBar videoRef={videoRef} value={currentTime}/>
-                <FullBtn videoRef={videoRef}/>
+                <PlayBtn value={isPlaying}/>
+                <ProgressBar value={currentTime}/>
+                <FullBtn />
             </Container>
         </Cover>
     </Frame>);

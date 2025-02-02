@@ -41,7 +41,7 @@ export const addBookMark = (line) => {
             return <Bookmark 
                 key={key} timestamp={word}
             >{word}</Bookmark>;
-        } else if(word == '') {
+        } else if(word === '') {
             return <>&nbsp;</>;
         } else {
             return word;
