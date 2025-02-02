@@ -7,16 +7,13 @@ import { Video } from '../Video';
 const Test = () => (
     <Container>
         <h2>Test Page</h2>
-        <SizeTest max={'300px'}>
-            <img src="https://yt3.ggpht.com/qjsflFmyakGs5ekX8fPsDNfuKABx-yxIDrv-4ooPAFcZ6JUUpUPlue7g_d-VAk2YAiYR-0yr=s48-c-k-c0x00ffffff-no-rj" />
-        </SizeTest>
         <SizeTestPair max={'300px'}>
             <Bedge src="https://yt3.ggpht.com/qjsflFmyakGs5ekX8fPsDNfuKABx-yxIDrv-4ooPAFcZ6JUUpUPlue7g_d-VAk2YAiYR-0yr=s48-c-k-c0x00ffffff-no-rj">
                 <a href="#">ROSÉ</a><br/>
                 <span>구독자 1580만명</span>
             </Bedge>
         </SizeTestPair>
-        <SizeTestPair max={'700px'}>
+        <SizeTestPair max={'300px'}>
             <Video srcUrl={'http://localhost:8000/api/v1/video/0001'}></Video>
         </SizeTestPair>
     </Container>
