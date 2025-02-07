@@ -44,7 +44,7 @@ const Watch = () => {
             <Spacer/>
             <Container style={{ 'width': '700px' }}>
                 <VideoProvider>
-                    <Video srcUrl={backURL(`/api/v1/video/${data?.videoId}`)}></Video>
+                    <Video srcUrl={backURL(`/api/v1/video/${videoId}`)}></Video>
                     <MetaData {...data} />
                     <CommentList {...data} />
                 </VideoProvider>
