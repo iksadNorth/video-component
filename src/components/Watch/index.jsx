@@ -4,7 +4,7 @@ import { Button } from "../Button";
 import { Video } from "../Video";
 import { lightTheme, darkTheme } from "../Theme/Type";
 import { useTheme } from '../Theme';
-import { Spacer } from '../Spacer';
+import { Spacer } from '../layout/Spacer';
 
 import { CommentList } from './CommentList';
 import { MetaData } from './MetaData';
@@ -25,8 +25,8 @@ const Watch = () => {
         if(!videoId) return {};
 
         const [metadata, comments] = await Promise.all([
-            api(`/api/v1/metadata/${videoId}`).then(res => res.data),
-            api(`/api/v1/comments/${videoId}`).then(res => res.data),
+            api(`/api/v1/videos/${videoId}/metadatas`).then(res => res.data),
+            api(`/api/v1/videos/${videoId}/comments`).then(res => res.data),
         ]);
         
         return {
@@ -44,7 +44,7 @@ const Watch = () => {
             <Spacer/>
             <Container style={{ 'width': '700px' }}>
                 <VideoProvider>
-                    <Video srcUrl={backURL(`/api/v1/video/${videoId}`)}></Video>
+                    <Video srcUrl={backURL(`/api/v1/videos/${videoId}`)}></Video>
                     <MetaData {...data} />
                     <CommentList {...data} />
                 </VideoProvider>

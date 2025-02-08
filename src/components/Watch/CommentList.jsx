@@ -1,29 +1,33 @@
 import React from "react";
 import { Container } from "../Container";
-import { Spacer } from '../Spacer';
 import { IconBtn } from '../IconBtn';
 import { faSort } from "@fortawesome/free-solid-svg-icons";
+import styled from 'styled-components';
+import { withFitSize } from "../layout/Size";
 
 import { Comment } from './Comment';
 import { convertToKoreanUnit } from "../../utils";
+import { withCardAlign } from "../layout/Align";
 
 
-export const CommentList = ({totalCount, commentArr, ...props}) => {
+const CommentListTitle = withCardAlign();
+const IconBtnStyled = withFitSize(IconBtn);
+
+export const CommentList = ({totalCount, items, ...props}) => {
     return (<>
-        <Container>
-            <Container row="true">
+        <div>
+            <CommentListTitle>
                 <h3>댓글 {convertToKoreanUnit(totalCount)}개</h3>
-                <Spacer row="true"/>
-                <IconBtn icon={faSort} bgcolor={'unset'}>
+                <IconBtnStyled icon={faSort} bgcolor={'unset'}>
                     정렬 기준
-                </IconBtn>
-            </Container>
+                </IconBtnStyled>
+            </CommentListTitle>
             <Container>
                 { 
-                    commentArr?.map(
+                    items?.map(
                         (props, key) => <Comment key={key} {...props}/>
                     ) 
                 }
             </Container>
-        </Container>
+        </div>
     </>)};

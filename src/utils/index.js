@@ -50,3 +50,26 @@ export const convertToKoreanUnit = (num) => {
         return num.toString();
     }
 };
+
+export const timeAgo = (isoString) => {
+    if(!isoString) return '';
+
+    const date = new Date(isoString);
+    const now = new Date();
+    const diff = Math.floor((now - date) / 1000);   // 초 단위 차이
+
+    const units = [
+        { label: "년", seconds: 31536000 },         // 1년 = 365일
+        { label: "개월", seconds: 2592000 },        // 1개월 = 30일
+        { label: "일", seconds: 86400 },            // 1일
+        { label: "시간", seconds: 3600 },           // 1시간
+        { label: "분", seconds: 60 },               // 1분
+    ];
+
+    for (const unit of units) {
+        const value = Math.floor(diff / unit.seconds);
+        if (value < 1) continue;
+        return `${value} ${unit.label} 전`;
+    }
+    return "방금 전";
+};

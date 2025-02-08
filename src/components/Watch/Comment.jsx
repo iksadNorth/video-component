@@ -1,9 +1,13 @@
 import React from "react";
 import { Bedge } from '../Bedge';
 import { addBookMark } from "./Bookmark";
+import { timeAgo } from "../../utils";
+import { withCardAlign } from "../layout/Align";
 
 
-export const Comment = ({comment, src, ...props}) => {
+const CommentTitle = withCardAlign();
+
+export const Comment = ({comment, src, nickname, created_at, ...props}) => {
     // 댓글 파싱.
     // 기본적으로 라인 마다 줄바꿈 추가.
     const parseComment = (text) => {
@@ -19,6 +23,10 @@ export const Comment = ({comment, src, ...props}) => {
 
     return (<>
         <Bedge bdalign={'unset'} bdheight={'3rem'} src={src ?? null}>
-            { parseComment(comment) }
+            <CommentTitle>
+                <span style={{ color: 'gray' }}>@{ nickname }</span>
+                <span>{ timeAgo(created_at) }</span>
+                <span className={"col-span-2"}>{ parseComment(comment) }</span>
+            </CommentTitle>
         </Bedge>
     </>)};

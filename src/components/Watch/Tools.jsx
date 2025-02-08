@@ -3,13 +3,15 @@ import { IconBtn, IconContainer } from '../IconBtn';
 import { convertToKoreanUnit } from "../../utils";
 
 
-export const Tools = ({numLikes, ...props}) => {
+export const Tools = ({numLikes, numDislikes, ...props}) => {
     return (
         <IconContainer row="true">
             <IconBtn icon={faThumbsUp}>
                 { convertToKoreanUnit(numLikes) }
             </IconBtn>
-            <IconBtn icon={faThumbsDown} />
+            <IconBtn icon={faThumbsDown}>
+                { convertToKoreanUnit(numLikes) }
+            </IconBtn>
             <IconBtn icon={faShare}>
                 공유
             </IconBtn>
