@@ -26,7 +26,7 @@ const Watch = () => {
 
         const [metadata, comments] = await Promise.all([
             api(`/api/v1/videos/${videoId}/metadatas`).then(res => res.data),
-            api(`/api/v1/videos/${videoId}/comments`).then(res => res.data),
+            api(`/api/v1/videos/${videoId}/comments?page_size=10&page=1&sort=-created_at`).then(res => res.data),
         ]);
         
         return {
