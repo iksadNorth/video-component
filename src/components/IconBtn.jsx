@@ -3,9 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Container } from './Container';
 
 
-const Spacer = styled.span`
-    margin-left: 0.25rem;
-`;
 const ButtonStyled = styled.button`
     border: none;
     border-radius: 10px;
