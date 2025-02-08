@@ -18,21 +18,18 @@ const ButtonStyled = styled.button`
 `;
 export const IconContainer = styled(Container)`
     display: table;
-
-    & > * {
-        margin: 2px;
-        height: 1.70rem;
-    }
+    height: 1.5rem;
+    line-height: 1.5rem;
+    gap: 5px;
 `;
 
 export const IconBtn = ({children, icon, bgcolor, ...props}) => {
     return (<>
         <ButtonStyled bgcolor={bgcolor} {...props}>
-            <div>
+            <IconContainer>
                 {icon ? <FontAwesomeIcon icon={icon} /> : ''}
-                {(icon && children) ? <Spacer /> : ''}
-                {children}
-            </div>
+                <span className='text'>{children}</span>
+            </IconContainer>
         </ButtonStyled>
     </>);
 };

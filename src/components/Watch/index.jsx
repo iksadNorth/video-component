@@ -4,7 +4,6 @@ import { Button } from "../Button";
 import { Video } from "../Video";
 import { lightTheme, darkTheme } from "../Theme/Type";
 import { useTheme } from '../Theme';
-import { Spacer } from '../layout/Spacer';
 
 import { CommentList } from './CommentList';
 import { MetaData } from './MetaData';
@@ -41,8 +40,7 @@ const Watch = () => {
 
     return (<>
         <Container style={{ 'minHeight': '100vh' }}>
-            <Spacer/>
-            <Container style={{ 'width': '700px' }}>
+            <Container style={{ 'width': '1000px' }}>
                 <VideoProvider>
                     <Video srcUrl={backURL(`/api/v1/videos/${videoId}`)}></Video>
                     <MetaData {...data} />

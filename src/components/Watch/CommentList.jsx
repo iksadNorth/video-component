@@ -10,12 +10,15 @@ import { convertToKoreanUnit } from "../../utils";
 import { withCardAlign } from "../layout/Align";
 
 
+const ContainerStyled = styled(Container)`
+align-items: start;
+`
 const CommentListTitle = withCardAlign();
 const IconBtnStyled = withFitSize(IconBtn);
 
 export const CommentList = ({totalCount, items, ...props}) => {
     return (<>
-        <div>
+        <ContainerStyled>
             <CommentListTitle>
                 <h3>댓글 {convertToKoreanUnit(totalCount)}개</h3>
                 <IconBtnStyled icon={faSort} bgcolor={'unset'}>
@@ -29,5 +32,5 @@ export const CommentList = ({totalCount, items, ...props}) => {
                     ) 
                 }
             </Container>
-        </div>
+        </ContainerStyled>
     </>)};
