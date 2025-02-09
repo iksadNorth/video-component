@@ -42,7 +42,9 @@ export const convertToKoreanUnit = (num) => {
     if(!num || isNaN(num)) return '0';
     num = Number(num);
 
-    if (num >= 100000000) {
+    if (num >= 1000000000000) {
+        return (num / 1000000000000).toFixed(0) + "조";
+    } else if (num >= 100000000) {
         return (num / 100000000).toFixed(0) + "억";
     } else if (num >= 10000) {
         return (num / 10000).toFixed(0) + "만";
@@ -69,7 +71,7 @@ export const timeAgo = (isoString) => {
     for (const unit of units) {
         const value = Math.floor(diff / unit.seconds);
         if (value < 1) continue;
-        return `${value} ${unit.label} 전`;
+        return `${value}${unit.label} 전`;
     }
     return "방금 전";
 };

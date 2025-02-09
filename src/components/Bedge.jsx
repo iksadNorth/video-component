@@ -6,10 +6,11 @@ const BedgeStyled = styled.img`
     border-radius: 50%;
     height: ${({bdheight}) => bdheight ?? '100%'};
     max-width: 100%;
-
-    & + div {
-        font-size: 1rem;
-    }
+`;
+const ContentStyled = styled.div`
+    font-size: 1rem;
+    width: 80%;
+    word-break: break-word;
 `;
 const BedgeContainer = styled(Container)`
     align-items: ${({bdalign}) => bdalign ? `${bdalign} !important` : 'center'};
@@ -21,9 +22,9 @@ export const Bedge = ({children, bdalign, bdheight, src, ...props}) => {
     return (<>
         <BedgeContainer row="true" bdalign={bdalign} {...props}>
             <BedgeStyled bdheight={bdheight} src={src} {...props} />
-            <div>
+            <ContentStyled>
                 {children}
-            </div>
+            </ContentStyled>
         </BedgeContainer>
     </>);
 };
