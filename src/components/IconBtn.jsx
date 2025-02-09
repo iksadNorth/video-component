@@ -6,7 +6,7 @@ import { Container } from './Container';
 const ButtonStyled = styled.button`
     border: none;
     border-radius: 10px;
-    background-color: ${({bgcolor}) => bgcolor ?? 'gray'};
+    background-color: ${({bgcolor}) => bgcolor || 'gray'};
 
     &:hover {
         background-color: lightgray;

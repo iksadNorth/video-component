@@ -5,7 +5,7 @@ import { useTheme } from '../Theme';
 
 const unit = '1.00rem';
 const Base = styled(Container)`
-    ${({disabled}) => (disabled ?? false) ? 'display: none;' : ''}
+    ${({disabled}) => (disabled || false) ? 'display: none;' : ''}
 
     & > span {
         font-size: 0.75rem;

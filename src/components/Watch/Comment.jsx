@@ -22,7 +22,7 @@ export const Comment = ({comment, src, nickname, created_at, ...props}) => {
     };
 
     return (<>
-        <Bedge bdalign={'unset'} bdheight={'3rem'} src={src ?? null}>
+        <Bedge bdalign={'unset'} bdheight={'3rem'} src={src || null}>
             <CommentTitle>
                 <span style={{ color: 'gray' }}>@{ nickname }</span>
                 <span>{ timeAgo(created_at) }</span>

@@ -5,8 +5,8 @@ import styled from "styled-components";
 export const ListContainer = styled(Container)`
     margin-left: auto;
     margin-right: auto;
-    height:     ${ ({ style }) => style?.height ?? 'fit-content' };
-    width:      ${ ({ style }) => style?.width ?? '100%' };
+    height:     ${ ({ style }) => style?.height || 'fit-content' };
+    width:      ${ ({ style }) => style?.width || '100%' };
 
     display: grid;
     gap: 10px;

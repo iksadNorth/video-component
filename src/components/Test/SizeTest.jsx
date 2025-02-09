@@ -17,10 +17,10 @@ const Container = styled.div`
 `;
 
 export const SizeTest = styled.div`
-    --max: ${({max}) => max ?? '600px'};
-    --min: ${({min}) => min ?? '100px'};
-    --frq: ${({frq}) => frq ?? '4s'};
-    --bg: ${({bg}) => bg ?? 'lightgray'};
+    --max: ${({max}) => max || '600px'};
+    --min: ${({min}) => min || '100px'};
+    --frq: ${({frq}) => frq || '4s'};
+    --bg: ${({bg}) => bg || 'lightgray'};
 
     width: var(--max); height: var(--max);
     background-color: var(--bg);

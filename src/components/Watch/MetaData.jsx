@@ -14,7 +14,7 @@ export const MetaData = ({title, bdsrc, publisher, numDescripter, ...props}) => 
     // 페이지 제목 변경
     useEffect(() => {
         const oldTitle = document.title;
-        document.title = (title ?? oldTitle);
+        document.title = (title || oldTitle);
 
         return () => {
             document.title = oldTitle;
@@ -22,9 +22,9 @@ export const MetaData = ({title, bdsrc, publisher, numDescripter, ...props}) => 
     }, [title]);
     
     return (<ContainerStyled>
-        <h2>{ title ?? document.title }</h2>
+        <h2>{ title || document.title }</h2>
         <Container row="true">
-            <Bedge src={bdsrc ?? null}>
+            <Bedge src={bdsrc || null}>
                 <a href="#">{ publisher }</a><br/>
                 <span>구독자 { convertToKoreanUnit(numDescripter) }명</span>
             </Bedge>

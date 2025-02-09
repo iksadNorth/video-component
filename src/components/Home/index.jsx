@@ -1,21 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { VideoHolder } from "./VideoHolder";
 import { ListContainer } from "../layout/ListContainer";
 
+import api from "../../axio";
+import { useProxy } from "../AxioProxy";
+
 
 const Home = () => {
-    const items = [
-        {
-            thumbnail: 'https://cdn.pixabay.com/photo/2023/07/17/09/25/tree-8132250_1280.jpg',
-            title: '[쇼트트랙] 여자 계주 3000m 결승 하이라이트 | 2025 하얼빈 동계 아시안게임',
-            publisher: 'SPOTV',
-            numViews: 10000,
-            created_at: '2025-02-01T10:10:00.000',
-            videoId: '1',
-        },
-        {},
-        {},
-    ];
+    const [items, setItems] = useState([]);
+    const proxy = useProxy();
+
+    const fetchData = async () => {
+        return await api(
+            `/api/v1/videos?sort=-created_at`
+        ).then(res => res.data);
+    };
+
+    useEffect(() => {
+        proxy(fetchData).then((res) => res?.items).then(setItems);
+    }, []);
+    
     return (
         <ListContainer>
             { items.map((item, index) => <VideoHolder key={index} { ...item }/>) }

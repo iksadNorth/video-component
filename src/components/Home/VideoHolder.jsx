@@ -33,20 +33,21 @@ const VideoHolderStyled = styled(withFullSize())`
     cursor: pointer;
 `;
 
-export const VideoHolder = ({ thumbnail, title, publisher, numViews, created_at, videoId, ...props }) => {
+export const VideoHolder = ({ thumbnail, title, publisher, numViews, created_at, videoId, bdsrc, ...props }) => {
     const navigate = useNavigate();
 
-    thumbnail = thumbnail ?? 'https://cdn.pixabay.com/photo/2017/03/09/12/31/error-2129569_1280.jpg';
-    title = title ?? '...';
-    publisher = publisher ?? '...';
-    numViews = numViews ?? 0;
-    created_at = created_at ?? '';
-    videoId = videoId ?? '';
+    thumbnail = thumbnail || 'https://cdn.pixabay.com/photo/2017/03/09/12/31/error-2129569_1280.jpg';
+    bdsrc = bdsrc || null;
+    title = title || '...';
+    publisher = publisher || '...';
+    numViews = numViews || 0;
+    created_at = created_at || '';
+    videoId = videoId || '';
 
     return (<>
         <VideoHolderStyled onClick={() => navigate(`/watch/${videoId}`)}>
             <Preview src={ thumbnail } />
-            <Bedge bdalign="start">
+            <Bedge bdalign="start" src={bdsrc}>
                 <Content>
                     <span>{ title }</span>
                     <span style={{color: 'gray'}}>{ publisher }</span>

@@ -57,7 +57,7 @@ export const PlayBtn = ({ value }) => {
     
     // 외부 요청값 반영
     useEffect(() => {
-        setIsPlaying(value ?? false);
+        setIsPlaying(value || false);
     }, [value]);
     
     return (<>

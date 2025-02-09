@@ -48,7 +48,7 @@ export const ProgressBar = ({ value, ...props }) => {
     // State 정의
     const [progress, setProgress] = useState(0);
     const [transaction, setTransaction] = useState(false);
-    const [currentTime, setCurrentTime] = useState(videoRef.current?.currentTime ?? 0);
+    const [currentTime, setCurrentTime] = useState(videoRef.current?.currentTime || 0);
 
     // 이벤트 정의
     const mouseDown = () => {
