@@ -1,3 +1,4 @@
+import React, { useState, useImperativeHandle } from "react";
 import styled from 'styled-components';
 
 
@@ -9,7 +10,7 @@ const ModalOverlay = styled.div`
 
     background: rgba(0, 0, 0, 0.5);
 
-    display: flex;
+    display: ${({ open }) =>  (open ?? true) ? 'flex' : 'none'};
     justify-content: center;
     align-items: center;
 
@@ -27,9 +28,20 @@ const ModalContent = styled.div`
     position: relative;
 `;
 
-export const Modal = ({ children }) => {
+export const Modal = ({ children, ref }) => {
+    const [open, isOpen] = useState(false);
+
+    useImperativeHandle(ref, () => ({
+        open: () => isOpen(true),
+        close: () => isOpen(false),
+    }));
+
+    const handleOutterClick = (event) => {
+        if (event.target !== event.currentTarget) return;
+        isOpen(false);
+    };
     return (
-        <ModalOverlay>
+        <ModalOverlay open={open} onClick={handleOutterClick}>
             <ModalContent>
                 { children }
             </ModalContent>
