@@ -36,6 +36,13 @@ const VideoHolderStyled = styled(withFullSize())`
 export const VideoHolder = ({ thumbnail, title, publisher, numViews, created_at, videoId, ...props }) => {
     const navigate = useNavigate();
 
+    thumbnail = thumbnail ?? 'https://cdn.pixabay.com/photo/2017/03/09/12/31/error-2129569_1280.jpg';
+    title = title ?? '...';
+    publisher = publisher ?? '...';
+    numViews = numViews ?? 0;
+    created_at = created_at ?? '';
+    videoId = videoId ?? '';
+
     return (<>
         <VideoHolderStyled onClick={() => navigate(`/watch/${videoId}`)}>
             <Preview src={ thumbnail } />
