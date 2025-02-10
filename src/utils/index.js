@@ -33,6 +33,7 @@ export const timeToSeconds = (timeStr) => {
     return hours * 3600 + minutes * 60 + seconds;
 };
 
+export const FRONT_URL = 'http://localhost:3000';
 export const BACK_URL = 'http://localhost:8000';
 export const backURL = (url) => {
     return `${BACK_URL}${url}`;
@@ -74,4 +75,35 @@ export const timeAgo = (isoString) => {
         return `${value}${unit.label} 전`;
     }
     return "방금 전";
+};
+
+export const openPopup = (url, params={}, options = 'width=400,height=600') => {
+    return new Promise((resolve, reject) => {
+        const form = document.createElement("form");
+        form.method = "GET";
+        form.action = url;
+        form.target = "popupWindow"; // 새 창의 이름 지정
+
+        // 각 파라미터를 form의 hidden input으로 추가
+        Object.keys(params).forEach((key) => {
+            const input = document.createElement("input");
+            input.type = "hidden";
+            input.name = key;
+            input.value = params[key];
+            form.appendChild(input);
+        });
+
+        document.body.appendChild(form);
+
+        // 팝업 창 열기 (폼을 통해)
+        const popup = window.open("", "popupWindow", options);
+
+        if (!popup) {
+            reject();
+            return;
+        }
+
+        form.submit();
+        document.body.removeChild(form); // 폼 제거
+    });
 };

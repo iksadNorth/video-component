@@ -11,13 +11,14 @@ const Home = () => {
     const proxy = useProxy();
 
     const fetchData = async () => {
-        return await api(
+        return await api.get(
             `/api/v1/videos?sort=-created_at`
         ).then(res => res.data);
     };
 
     useEffect(() => {
         proxy(fetchData).then((res) => res?.items).then(setItems);
+        window.close();
     }, []);
     
     return (

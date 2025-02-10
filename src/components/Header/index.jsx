@@ -6,6 +6,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Container } from '../Container';
 import { Bedge } from '../Bedge';
 import { Modal } from "../Modal";
+import { UserDashBoard } from "./UserDashBoard";
 
 
 export const HeaderStyled = styled.div`
@@ -29,7 +30,7 @@ const IconBtnStyled = styled(IconBtn)`
 
 export const Header = ({ ...props }) => {
     const modalRef = useRef();
-    return (
+    return (<>
         <HeaderStyled { ...props }>
             <Container>
                 <IconBtnStyled icon={ faOpenid } />
@@ -43,9 +44,10 @@ export const Header = ({ ...props }) => {
                     iksadnorth
                 </Bedge>
             </Container>
-            <Modal ref={modalRef}>
-                test
-            </Modal>
         </HeaderStyled>
-    );
+        
+        <Modal ref={modalRef}>
+            <UserDashBoard />
+        </Modal>
+    </>);
 };
