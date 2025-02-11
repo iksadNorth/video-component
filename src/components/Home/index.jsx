@@ -18,7 +18,6 @@ const Home = () => {
 
     useEffect(() => {
         proxy(fetchData).then((res) => res?.items).then(setItems);
-        window.close();
     }, []);
     
     return (

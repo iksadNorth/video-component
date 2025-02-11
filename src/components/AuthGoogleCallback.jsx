@@ -1,13 +1,15 @@
 import React, { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useProxy } from "./AxioProxy";
-import { setItem } from "../utils/storage";
 import api from "../axio";
+import useLocalStorage from "./Hook/useLocalStorage";
 
 
 const AuthGoogleCallback = () => {
     const [searchParams] = useSearchParams();
     const proxy = useProxy();
+    const [accessToken, setAccessToken, removeAccessToken] = useLocalStorage('access_token', null);
+    const [userInfo, setUserInfo, removeUserInfo] = useLocalStorage('user_info', null);
 
     const fetchToken = (code) => async () => {
         const res = await api.post(
@@ -22,11 +24,9 @@ const AuthGoogleCallback = () => {
         
         proxy(fetchToken(code)).then((res) => {
             if(!res.access_token) return;
-            setItem("access_token", res.access_token);
-            
-            // 창닫기
-            window.close();
-        });
+            setAccessToken(res.access_token);
+            setUserInfo(res.user);
+        }).finally(() => { window.close();});
 
     }, []);
   return (<></>);

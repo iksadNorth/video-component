@@ -1,6 +1,7 @@
 import React from "react";
 import styled from 'styled-components';
 import { FRONT_URL, openPopup } from "../../utils";
+import useLocalStorage from "../Hook/useLocalStorage";
 
 
 const GoogleButton = styled.button`
@@ -40,6 +41,9 @@ const GoogleIcon = styled.img`
 `;
 
 export const GoogleLoginButton = () => {
+    const [accessToken, setAccessToken, removeAccessToken] = useLocalStorage('access_token', null);
+    const [userInfo, setUserInfo, removeUserInfo] = useLocalStorage('user_info', null);
+
     const CLIENT_ID = "166933239001-7hecbc575m8g9n3l9lt7idjb2570brov.apps.googleusercontent.com";
     const REDIRECT_URI = `${FRONT_URL}/auth/google/callback`;
 
@@ -53,10 +57,23 @@ export const GoogleLoginButton = () => {
         };
         openPopup(authUrl, params);
     };
-  return (
-    <GoogleButton onClick={googleLogin}>
-        <GoogleIcon src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/2048px-Google_%22G%22_logo.svg.png" alt="Google" />
-        Sign in with Google
-    </GoogleButton>
-  );
+    const logout = () => {
+        removeAccessToken();
+        removeUserInfo();
+    };
+    if(accessToken) {
+        return (
+            <GoogleButton onClick={logout}>
+                <GoogleIcon src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/2048px-Google_%22G%22_logo.svg.png" alt="Google" />
+                Log Out
+            </GoogleButton>
+        );
+    } else {
+        return (
+            <GoogleButton onClick={googleLogin}>
+                <GoogleIcon src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/2048px-Google_%22G%22_logo.svg.png" alt="Google" />
+                Sign in with Google
+            </GoogleButton>
+        );
+    }
 };

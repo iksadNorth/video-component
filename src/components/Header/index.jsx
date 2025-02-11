@@ -4,9 +4,9 @@ import { IconBtn } from '../IconBtn';
 import { faOpenid } from '@fortawesome/free-brands-svg-icons';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Container } from '../Container';
-import { Bedge } from '../Bedge';
 import { Modal } from "../Modal";
 import { UserDashBoard } from "./UserDashBoard";
+import { UserLogginBedge } from "../UserLogginBedge";
 
 
 export const HeaderStyled = styled.div`
@@ -40,9 +40,7 @@ export const Header = ({ ...props }) => {
             </Container>
             <Container row="true">
                 <IconBtnStyled icon={ faPlus } />
-                <Bedge style={{ width: 'unset' }} onClick={ () => modalRef.current.open() }>
-                    iksadnorth
-                </Bedge>
+                <UserLogginBedge onClick={() => modalRef.current.open()}/>
             </Container>
         </HeaderStyled>
         

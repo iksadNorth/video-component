@@ -1,6 +1,6 @@
 import React from "react";
 import styled from 'styled-components';
-import { Bedge } from "../Bedge";
+import { UserLogginBedge } from "../UserLogginBedge";
 import { GoogleLoginButton } from "./GoogleLoginButton";
 
 
@@ -20,13 +20,7 @@ export const UserDashBoard = ({ ...props }) => {
                 <GoogleLoginButton />
             </div>
             <div>
-                <Bedge />
-            </div>
-            <div>
-                <Bedge />
-            </div>
-            <div>
-                <Bedge />
+                <UserLogginBedge />
             </div>
         </Card>
     </>);
